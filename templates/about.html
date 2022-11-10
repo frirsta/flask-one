@@ -10,35 +10,35 @@
     action. The superstitious Dwarves also considered thirteen to be an unlucky number, and as Gandalf had planned to
     leave on other business, welcomed a fourteenth to fill into their party.</p>
 
-    {% for member in company %}
+{% for member in company %}
 
-    
-    <div class="row featurette">
 
-            {% if loop.index % 2 != 0 %}
+<div class="row featurette">
 
-        <div class="col-md-7">
-            <h3>{{ loop.index }}. {{ member.name }}</h3>
-            <p>{{ member.description }}</p>
-        </div>
-        <div class="col-md-5">
-            <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-        </div>
-        {% else %}
+    {% if loop.index % 2 != 0 %}
 
-        <div class="col-md-5">
-            <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-        </div>
-        
-        <div class="col-md-7">
-            <h3>{{ loop.index }}. {{ member.name }}</h3>
-            <p>{{ member.description }}</p>
-        </div>
-
-        {% endif %}
-
+    <div class="col-md-7">
+        <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+        <p>{{ member.description }}</p>
     </div>
-    <hr class="featurette-divider">
+    <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+    </div>
+    {% else %}
 
+    <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+    </div>
+
+    <div class="col-md-7">
+        <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+        <p>{{ member.description }}</p>
+    </div>
+
+    {% endif %}
+</div>
+{% if loop.index != loop.length %}
+<hr class="featurette-divider">
+{% endif %}
 {% endfor %}
 {% endblock %}
